@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 const Product = (props) => {
-  const { title, rating, price, image } = props.data;
+  const { title, rating, price, image } = props;
   return (
     <div className="product">
       <div className="product__info">
@@ -11,10 +11,11 @@ const Product = (props) => {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          <StarIcon />
-          <StarIcon />
-          <StarIcon />
-          {rating}
+          {Array(rating)
+            .fill()
+            .map((_, i) => (
+              <StarIcon />
+            ))}
         </div>
       </div>
       <img src={image} alt="" className="product__img" />

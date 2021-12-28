@@ -7,6 +7,10 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 
   &__logo {
     height: 50px;
