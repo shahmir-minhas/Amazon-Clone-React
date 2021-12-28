@@ -6,12 +6,16 @@ import App from "./App";
 // import { Provider } from 'react-redux';
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
+import { BasketProvider } from "./Context/basketContext";
+import reducer, { initialState } from "./Context/reducer";
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
     <Router>
-      <App />
+      <BasketProvider reducer={reducer} initialState={initialState}>
+        <App />
+      </BasketProvider>
     </Router>
     {/* </Provider> */}
   </React.StrictMode>,

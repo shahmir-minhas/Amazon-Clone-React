@@ -6,6 +6,7 @@ import Header from "./Layout/Header";
 import Index from "./Pages/Home/Index";
 import { Routes, Route } from "react-router-dom";
 import Checkout from "./Pages/Checkout/Checkout";
+import Login from "./Pages/Auth/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         {/* <Route path="expenses" element={<Expenses />} /> */}
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Index />} />
       </Routes>
     </div>
@@ -21,4 +23,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,7 +1,25 @@
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
+import { useBasket } from "../../Context/basketContext";
+
 const Product = (props) => {
-  const { title, rating, price, image } = props;
+  const { id, title, rating, price, image } = props;
+  const [state, dispatch] = useBasket();
+
+  const addToBasket = () => {
+    // dispatch data into basket
+    dispatch({
+      type: "ADD_TO_BASKET",
+      item: {
+        id: id,
+        title: title,
+        price: price,
+        rating: rating,
+        image: image,
+      },
+    });
+  };
+
   return (
     <div className="product">
       <div className="product__info">
@@ -14,12 +32,12 @@ const Product = (props) => {
           {Array(rating)
             .fill()
             .map((_, i) => (
-              <StarIcon />
+              <StarIcon key={i} />
             ))}
         </div>
       </div>
       <img src={image} alt="" className="product__img" />
-      <button className="product__button" type="button">
+      <button className="product__button" type="button" onClick={addToBasket}>
         Add to Cart
       </button>
     </div>
