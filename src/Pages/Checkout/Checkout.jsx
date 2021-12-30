@@ -4,7 +4,7 @@ import { useBasket } from "./../../Context/basketContext";
 import StarIcon from "@mui/icons-material/Star";
 
 const Checkout = () => {
-  const [{ basket }, dispatch] = useBasket();
+  const [{ basket,user }, dispatch] = useBasket();
 
   // const [totalPrice, setTotalPrice] = React.useState();
 
@@ -30,6 +30,7 @@ const Checkout = () => {
           className="checkout__ad"
         />
         <div>
+        <h3>{user?.email?`Hey! ${user.email}`:""}</h3>
           <h2 className="checkout__title">Shopping Basket</h2>
           {basket.map((p) => (
             <div className="checkout__product">
