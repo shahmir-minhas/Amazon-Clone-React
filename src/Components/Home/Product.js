@@ -21,7 +21,7 @@ const Product = (props) => {
   };
 
   return (
-    <div className="product">
+    <div className="product animation-product">
       <div className="product__info">
         <p>{title}</p>
         <p className="product__price">

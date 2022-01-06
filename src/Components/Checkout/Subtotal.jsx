@@ -1,9 +1,11 @@
 import React from "react";
 import CurrencyFormat from "react-currency-format";
 import { useBasket } from "./../../Context/basketContext";
+import {  useNavigate } from "react-router-dom";
 
 const Subtotal = ({ totalPrice }) => {
   const [{ basket }] = useBasket();
+  const navigate = useNavigate();
   return (
     <React.Fragment>
       <div className="subtotal">
@@ -25,7 +27,12 @@ const Subtotal = ({ totalPrice }) => {
           decimalScale={2}
         />
 
-        <button className="subtotal__btn-checkout">Proceed to Checkout</button>
+        <button
+          className="subtotal__btn-checkout"
+          onClick={(e) => navigate("/payment")}
+        >
+          Proceed to Checkout
+        </button>
       </div>
     </React.Fragment>
   );

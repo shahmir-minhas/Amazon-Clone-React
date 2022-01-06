@@ -2,7 +2,6 @@ import React from "react";
 import Product from "../../Components/Home/Product";
 
 const Index = () => {
-
   return (
     <div className="home__wrapper">
       <img

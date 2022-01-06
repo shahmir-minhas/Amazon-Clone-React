@@ -2,10 +2,10 @@ import React from "react";
 import Subtotal from "../../Components/Checkout/Subtotal";
 import { useBasket } from "./../../Context/basketContext";
 import StarIcon from "@mui/icons-material/Star";
+import FlipMove from "react-flip-move";
 
 const Checkout = () => {
-  const [{ basket,user }, dispatch] = useBasket();
-
+  const [{ basket, user }, dispatch] = useBasket();
   // const [totalPrice, setTotalPrice] = React.useState();
 
   const getTotalPrice = () => {
@@ -21,6 +21,12 @@ const Checkout = () => {
     });
   };
 
+  //Animation
+  const ticketNotVisibleState = {
+    transform: "translateX(-100%)",
+    opacity: 0.1,
+  };
+
   return (
     <div className="checkout">
       <div className="checkout__left">
@@ -30,34 +36,49 @@ const Checkout = () => {
           className="checkout__ad"
         />
         <div>
-        <h3>{user?.email?`Hey! ${user.email}`:""}</h3>
+          <h3>{user?.email ? `Hey! ${user.email}` : ""}</h3>
           <h2 className="checkout__title">Shopping Basket</h2>
-          {basket.map((p) => (
-            <div className="checkout__product">
-              <img src={p.image} alt="" className="checkout__product__image" />
-              <div className="checkout__product__content">
-                <strong>{p.title}</strong>
-                <div>
-                  {Array(p.rating)
-                    .fill()
-                    .map((_, i) => (
-                      <StarIcon key={i} className="checkout__stars" />
-                    ))}
+          <FlipMove
+            enterAnimation={{
+              from: ticketNotVisibleState,
+              to: {},
+            }}
+            leaveAnimation={{
+              from: {},
+              to: ticketNotVisibleState,
+            }}
+          >
+            {basket.map((p) => (
+              <div className="checkout__product" key={p.id}>
+                <img
+                  src={p.image}
+                  alt=""
+                  className="checkout__product__image"
+                />
+                <div className="checkout__product__content">
+                  <strong>{p.title}</strong>
+                  <div>
+                    {Array(p.rating)
+                      .fill()
+                      .map((_, i) => (
+                        <StarIcon key={i} className="checkout__stars" />
+                      ))}
+                  </div>
+                  <div>
+                    <strong>$ {p.price}</strong>
+                  </div>
+                  <button
+                    className="btn-remove"
+                    onClick={() => {
+                      removeFromBasket(p.id);
+                    }}
+                  >
+                    Remove from Cart
+                  </button>
                 </div>
-                <div>
-                  <strong>$ {p.price}</strong>
-                </div>
-                <button
-                  className="btn-remove"
-                  onClick={() => {
-                    removeFromBasket(p.id);
-                  }}
-                >
-                  Remove from Cart
-                </button>
               </div>
-            </div>
-          ))}
+            ))}
+          </FlipMove>
         </div>
       </div>
       <div className="checkout__right">

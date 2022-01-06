@@ -7,7 +7,7 @@ import { useBasket } from "./../Context/basketContext";
 import { auth } from "../Firebase/firebase";
 
 const Header = () => {
-  const [state, dispatch] = useBasket();
+  const [state, dispatch ] = useBasket();
   console.log("state.user", state.user);
   const handleAuth = () => {
     if (state?.user) {
@@ -28,7 +28,7 @@ const Header = () => {
           <Link to="/login">
             <div className="header__option" onClick={handleAuth}>
               <span className="header__optionLine">
-                {state.user ? state.user.email : "Hello, Guest"}
+                {state?.user ? state.user.email : "Hello, Guest"}
               </span>
               {state.user ? "Sign out" : "Sign in"}
             </div>
